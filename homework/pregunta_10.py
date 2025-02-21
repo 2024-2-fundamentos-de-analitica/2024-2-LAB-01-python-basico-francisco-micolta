@@ -20,3 +20,24 @@ def pregunta_10():
 
 
     """
+    
+    resultado = []
+    
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columnas = line.strip().split("\t")  # Separar por tabulaciones
+            letra = columnas[0]  # Columna 1 (letra)
+            columna_4 = columnas[3].split(",")  # Columna 4 (elementos separados por coma)
+            columna_5 = columnas[4].split(",")  # Columna 5 (elementos separados por coma)
+            
+            # Cantidad de elementos en las columnas 4 y 5
+            cantidad_4 = len(columna_4)
+            cantidad_5 = len(columna_5)
+            
+            # Agregar la tupla (letra, cantidad_4, cantidad_5)
+            resultado.append((letra, cantidad_4, cantidad_5))
+            
+    return resultado
+
+# Ejecutar la función y mostrar el resultado
+print(pregunta_10())

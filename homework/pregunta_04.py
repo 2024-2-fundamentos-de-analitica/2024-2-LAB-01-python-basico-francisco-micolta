@@ -13,16 +13,37 @@ def pregunta_04():
 
     Rta/
     [('01', 3),
-     ('02', 4),
-     ('03', 2),
-     ('04', 4),
-     ('05', 3),
-     ('06', 3),
-     ('07', 5),
-     ('08', 6),
-     ('09', 3),
-     ('10', 2),
-     ('11', 2),
-     ('12', 3)]
+    ('02', 4),
+    ('03', 2),
+    ('04', 4),
+    ('05', 3),
+    ('06', 3),
+    ('07', 5),
+    ('08', 6),
+    ('09', 3),
+    ('10', 2),
+    ('11', 2),
+    ('12', 3)]
 
     """
+    
+    conteo_por_mes = {}
+    
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columnas = line.strip().split("\t")
+            fecha = columnas[2]  
+            mes = fecha[5:7]
+            
+            # Contar registros por mes
+            if mes in conteo_por_mes:
+                conteo_por_mes[mes] += 1
+            else:
+                conteo_por_mes[mes] = 1
+    
+    # Convertir el diccionario en una lista de tuplas y ordenarla por mes
+    resultado = sorted(conteo_por_mes.items())
+    return resultado
+
+# Ejecutar la función y mostrar el resultado
+print(pregunta_04())

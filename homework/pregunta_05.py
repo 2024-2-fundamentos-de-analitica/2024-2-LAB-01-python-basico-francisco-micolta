@@ -13,5 +13,25 @@ def pregunta_05():
 
     Rta/
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
-
+    
     """
+    valores_por_letras = {}
+    
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columnas = line.strip().split("\t")
+            letra = columnas[0]
+            valor = int(columnas[1])
+            
+            if letra in valores_por_letras:
+                valores_por_letras[letra].append(valor)
+            else:
+                valores_por_letras[letra] = [valor]
+        
+        resultado = [(letra, max(valores), min(valores)) for letra, valores in valores_por_letras.items()]
+        
+    resultado.sort()
+    
+    return resultado
+
+print(pregunta_05())

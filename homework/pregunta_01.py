@@ -14,3 +14,13 @@ def pregunta_01():
     214
 
     """
+    suma = 0
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columnas = line.strip().split("\t")
+            suma += int(columnas[1])
+    
+    return suma
+
+#probar
+#print(pregunta_01())

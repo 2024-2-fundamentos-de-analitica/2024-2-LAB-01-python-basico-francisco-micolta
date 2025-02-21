@@ -26,3 +26,30 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    valores_por_clave = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columnas = line.strip().split("\t")  # Separar por tabulaciones
+            pares = columnas[4].split(",")  # Separar los pares clave:valor
+
+            for par in pares:
+                clave, valor = par.split(":")  # Dividir clave y valor
+                valor = int(valor)  # Convertir valor a entero
+
+                # Almacenar valores en una lista para cada clave
+                if clave in valores_por_clave:
+                    valores_por_clave[clave].append(valor)
+                else:
+                    valores_por_clave[clave] = [valor]
+
+    # Obtener minimo y maximo para cada clave
+    resultado = [(clave, min(valores), max(valores)) for clave, valores in valores_por_clave.items()]
+
+    # Ordenar alfabeticamente por la clave
+    resultado.sort()
+
+    return resultado
+
+# Ejecutar la funcion y mostrar el resultado
+print(pregunta_06())

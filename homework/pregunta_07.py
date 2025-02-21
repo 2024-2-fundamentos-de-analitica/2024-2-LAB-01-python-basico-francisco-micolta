@@ -25,3 +25,24 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    asociaciones = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columnas = line.strip().split("\t")  # Separar por tabulaciones
+            letra = columnas[0]  # Primera columna (letras)
+            valor = int(columnas[1])  # Segunda columna (números)
+
+            # Almacenar letras en una lista para cada valor de la columna 2
+            if valor in asociaciones:
+                asociaciones[valor].append(letra)
+            else:
+                asociaciones[valor] = [letra]
+
+    # Convertir el diccionario a una lista de tuplas y ordenar por el valor de la columna 2
+    resultado = sorted(asociaciones.items())
+
+    return resultado
+
+# Ejecutar la función y mostrar el resultado
+print(pregunta_07())
